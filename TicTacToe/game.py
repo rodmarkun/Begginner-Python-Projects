@@ -1,6 +1,13 @@
 import time
 from player import HumanPlayer, RandomComputerPlayer, GeniusComputerPlayer
 
+"""
+In this project we will be developing a TicTacToe game
+ran by command line. The user will be able to play against
+two AI's: One picks its choices by pure random (RandomComputerPlayer)
+while the other uses the MiniMax algorithm to always win or tie
+(GeniusComputerPlayer)
+"""
 
 class TicTacToe:
     def __init__(self):
@@ -97,7 +104,8 @@ def play(game, x_player, o_player, print_game = True):
         print("It's a tie!")
         
 if __name__ == '__main__':
-      x_player = HumanPlayer('X')
-      o_player = GeniusComputerPlayer('O')
-      t = TicTacToe()
-      play(t, x_player, o_player, print_game = True)
+    # By default we play Human vs GeniusComputerPlayer. This can be changed at will
+    x_player = HumanPlayer('X')
+    o_player = GeniusComputerPlayer('O')
+    t = TicTacToe()
+    play(t, x_player, o_player, print_game = True)

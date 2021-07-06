@@ -1,6 +1,11 @@
 import random
 import re
 
+"""
+In this project we will be creating a classic minesweeper game 
+via command line.
+"""
+
 class Board:
     def __init__(self, dim_size, num_bombs):
         # Keep track of parameters
@@ -21,7 +26,7 @@ class Board:
         # Plant bombs
         bombs_planted = 0
         while bombs_planted < self.num_bombs:
-            loc = random.randint(0, self.dim_size**2 - 1)
+            loc = random.randint(0, self.dim_size**2 - 1) # Get a random index of the whole matrix
             row = loc // self.dim_size
             col = loc % self.dim_size
 
@@ -132,7 +137,6 @@ def play(dim_size = 10, num_bombs = 10):
     # Step 1: Create board and plant the bombs
     board = Board(dim_size, num_bombs)
     # Step 2: Show the user the board and ask for where they want to dig
-
     # Step 3a: If location is a bomb, show game over message
     # Step 3b: If location is not a bomb, dig recursively until each square is next to a bomb
     # Step 4: Repeat 2 and 3 until there are no more places to dig (Victory)
@@ -140,6 +144,7 @@ def play(dim_size = 10, num_bombs = 10):
 
     while len(board.dug) < board.dim_size ** 2 - num_bombs:
         print(board)
+        # The split function used like this gets rid of whitespaces
         user_input = re.split(',(\\s)*', input("Where would you like to dig? Input as row,col: "))
         row, col = int(user_input[0]), int(user_input[-1])
         if row < 0 or row >= board.dim_size or col < 0 or col >= board.dim_size:

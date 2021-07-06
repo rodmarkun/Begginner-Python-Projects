@@ -14,24 +14,27 @@ def naive_search(l, target):
     return -1
 
 # Binary search uses divide and conquer
-# We'll leverage the fact that our list is sorted
+# Keep in mind that our list MUST be sorted if we want to use Binary search
 
 def binary_search(l, target, low=None, high=None):
+    # Default parameters
     if low is None:
         low = 0
     if high is None:
         high = len(l) - 1
 
+    # Target not found
     if high < low:
         return -1
 
+    # Midpoint of the array (rounded down)
     midpoint = (low + high) // 2
 
-    if l[midpoint] == target:
+    if l[midpoint] == target: # Target found
         return midpoint
-    elif target < l[midpoint]:
+    elif target < l[midpoint]: # Target on low half
         return binary_search(l, target, low, midpoint-1)
-    else:
+    else: # Target on high half
         return binary_search(l, target, midpoint+1, high)
 
 if __name__ == '__main__':
@@ -42,10 +45,10 @@ if __name__ == '__main__':
 
     length = 10000
     # Build a sorted list of length 10000
-    sorted_list = set()
+    sorted_list = set() # We use a set in order to avoid having two (or more) equal numbers
     while len(sorted_list) < length:
-        sorted_list.add(random.randint(-3*length, 3*length))
-    sorted_list = sorted(list(sorted_list))
+        sorted_list.add(random.randint(-3*length, 3*length)) # We add random numbers to the set
+    sorted_list = sorted(list(sorted_list)) # Convert the set into a list and sort it
 
     start = time.time()
     for target in sorted_list:
